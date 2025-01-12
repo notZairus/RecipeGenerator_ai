@@ -5,15 +5,18 @@ export default function App() {
   const [tryy, setTryy] = useState(1);
   const videoRef = useRef(null);
 
-  useEffect(async () => {
+  useEffect(() => {
 
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      videoRef.current.srcObject = stream;
-    } catch(error) {
-      console.error(error);
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        videoRef.current.srcObject = stream;
+      } catch (error) {
+        console.log(error);
+      }
     }
 
+    startCamera();
   }, [])
 
 
@@ -27,8 +30,12 @@ export default function App() {
           </section>
 
           <section>
-            <video ref={videoRef} className="w-full h-96 bg-black rounded-lg">
-
+            <video 
+              ref={videoRef} 
+              className="w-full h-96 bg-black rounded-lg"
+              autoPlay
+              playsInline
+            >
             </video>
           </section>
 
