@@ -29,7 +29,7 @@ export default function App() {
             <h1 className="text-4xl font-bold">RG</h1>
           </section>
 
-          <section>
+          <section className="bg-yellow-400 relative">
             <video 
               ref={videoRef} 
               className="w-full h-96 bg-black rounded-lg"
@@ -37,6 +37,20 @@ export default function App() {
               playsInline
             >
             </video>
+            <button className="aspect-square w-20 bg-zinc-800 absolute m-auto flex items-center justify-center rounded-full inset-x-0 bottom-8">
+                Capture
+            </button>
+            
+          </section>
+
+          <section className="w-full h-auto min-h-20 flex">
+            <div className="flex-1 grid grid-cols-5 gap-4 px-8 my-4">
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+            </div>
           </section>
 
         </main>
