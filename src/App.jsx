@@ -22,8 +22,8 @@ export default function App() {
 
   return (
     <>
-      <div className="w-screen h-screen bg-gray-500 flex items-center justify-center">
-        <main className="w-full h-full bg-zinc-800 rounded text-white py-4 px-2 space-y-4">
+      <div className="w-screen min-h-screen bg-zinc-800 flex items-center justify-center">
+        <main className="w-full h-full rounded text-white py-4 px-2 space-y-4">
           
           <section className="px-2">
             <h1 className="text-4xl font-bold">RG</h1>
@@ -43,8 +43,14 @@ export default function App() {
             
           </section>
 
-          <section className="w-full h-auto min-h-20 flex">
-            <div className="flex-1 grid grid-cols-5 gap-4 px-8 my-4">
+          <section className="w-full h-auto min-h-20 flex justify-center items-center">
+            <div className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
               <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
               <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
               <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
