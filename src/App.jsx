@@ -41,7 +41,7 @@ export default function App() {
 
   return (
     <>
-      <div className="w-screen min-h-screen bg-zinc-800 flex items-center justify-center">
+      <div className="w-screen min-h-screen bg-zinc-800 flex justify-center">
         <main className="w-full h-full rounded text-white py-4 px-2 space-y-4">
           
           <section className="px-2 justify-between items-center">
@@ -52,7 +52,7 @@ export default function App() {
           <section className="relative">
             <video 
               ref={videoRef} 
-              className="w-full h-96 bg-black rounded-lg object-cover"
+              className="w-full h-96 bg-black rounded-lg aspect-video"
               autoPlay
               playsInline
             >
