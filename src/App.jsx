@@ -3,8 +3,10 @@ import cameraIcon from "./assets/camera.svg";
 
 export default function App() {
   
-  const [tryy, setTryy] = useState(1);
+  const [images, setImages] = useState([]);
   const videoRef = useRef(null);
+
+  console.log(images);
 
   useEffect(() => {
 
@@ -20,9 +22,7 @@ export default function App() {
     startCamera();
   }, [])
 
-  function capturePicture(e) {
-    alert('you took a pic');
-
+  function captureImage(e) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
 
@@ -31,8 +31,10 @@ export default function App() {
 
     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-    const image = canvas.toBlob((blob) => {
-
+    canvas.toBlob((blob) => {
+      let newImage = new File([blob], 'new-image.png', {type: 'image/png'});
+      let newImgUrl = URL.createObjectURL(newImage)
+      setImages(prev => [...prev, newImgUrl]);
     })
   }
 
@@ -55,24 +57,20 @@ export default function App() {
               playsInline
             >
             </video>
-            <button onClick={capturePicture} className="aspect-square w-20 bg-zinc-800 absolute m-auto flex items-center justify-center rounded-full inset-x-0 bottom-8">
+            <button onClick={captureImage} className="aspect-square w-20 bg-zinc-800 absolute m-auto flex items-center justify-center rounded-full inset-x-0 bottom-8">
               <img src={cameraIcon} alt="camera-icon" className="w-2/3"/>
             </button>
           </section>
 
           <section className="w-full h-auto min-h-20 flex justify-center items-center">
             <div className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
-              <div class="aspect-square bg-gray-500 rounded-md shadow-md"></div>
+              {
+                images.map((image, index) => (
+                  <div class="bg-gray-500 rounded-md shadow-md">
+                    <img src={image} />
+                  </div>
+                ))
+              }
             </div>
           </section>
 
