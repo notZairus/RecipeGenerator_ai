@@ -29,7 +29,7 @@ export default function App() {
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
 
-    context.drawImage(videoRef.current, 0, 0);
+    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
     canvas.toBlob((blob) => {
       let newImage = new File([blob], 'new-image.png', {type: 'image/png'});
@@ -52,7 +52,7 @@ export default function App() {
           <section className="relative">
             <video 
               ref={videoRef} 
-              className="w-full h-96 bg-black rounded-lg aspect-video"
+              className="w-full h-96 bg-black rounded-lg object-cover"
               autoPlay
               playsInline
             >
