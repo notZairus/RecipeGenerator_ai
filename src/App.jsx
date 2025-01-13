@@ -29,7 +29,7 @@ export default function App() {
     canvas.width = videoRef.current.videoWidth;
     canvas.height = videoRef.current.videoHeight;
 
-    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+    context.drawImage(videoRef.current, 0, 0);
 
     canvas.toBlob((blob) => {
       let newImage = new File([blob], 'new-image.png', {type: 'image/png'});
@@ -66,8 +66,8 @@ export default function App() {
             <div className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
               {
                 images.map((image, index) => (
-                  <div class="bg-gray-500 rounded-md shadow-md">
-                    <img src={image} />
+                  <div class="bg-gray-500 rounded-md overflow-hidden shadow-md flex justify-center items-center">
+                    <img src={image} className="flex-1"/>
                   </div>
                 ))
               }
