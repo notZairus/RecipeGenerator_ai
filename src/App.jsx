@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react"
 import cameraIcon from "./assets/camera.svg";
+import { urlToBLob } from "./functions.js";
 
 export default function App() {
   
   const [images, setImages] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const videoRef = useRef(null);
-
-  console.log(images);
 
   useEffect(() => {
 
@@ -21,6 +21,34 @@ export default function App() {
 
     startCamera();
   }, [])
+
+  useEffect(() => {
+
+    if (images.length == 0) return;
+    
+    const analyzeImage = async () => {
+      const last_image_url = images[images.length - 1];
+      const image = await urlToBLob(last_image_url);
+
+      const formData = new FormData();
+      formData.append('image', image);
+      
+      let response = await fetch(`https://api.imgbb.com/1/upload?key=cd016d985edb7a8252293b9296f13217`, {
+        method: 'POST',
+        body: formData
+      });
+
+      let result = await response.json();
+
+      alert(result.data.url);
+    }
+
+    analyzeImage();
+
+  }, [images]);
+
+  
+
 
   function captureImage(e) {
     const canvas = document.createElement('canvas');
@@ -63,15 +91,15 @@ export default function App() {
           </section>
 
           <section className="w-full h-auto min-h-20 flex justify-center items-center">
-            <div className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
-              {
-                images.map((image, index) => (
-                  <div class="bg-gray-500 aspect-auto rounded-md overflow-hidden shadow-md flex justify-center items-center">
-                    <img src={image} className="flex-1"/>
-                  </div>
-                ))
-              }
-            </div>
+            <ul className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
+            {
+              images.map((image, index) => (
+                <li key={image} class="bg-gray-500 aspect-auto rounded-md overflow-hidden shadow-md flex justify-center items-center">
+                  <img src={image} className="flex-1"/>
+                </li>
+              ))
+            }
+            </ul>
           </section>
 
         </main>
