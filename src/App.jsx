@@ -52,7 +52,7 @@ export default function App() {
           <section className="relative">
             <video 
               ref={videoRef} 
-              className="w-full h-96 bg-black rounded-lg"
+              className="w-full h-96 bg-black rounded-lg object-cover"
               autoPlay
               playsInline
             >
@@ -66,7 +66,7 @@ export default function App() {
             <div className="flex-1 grid grid-cols-4 gap-3 px-8 my-4">
               {
                 images.map((image, index) => (
-                  <div class="bg-gray-500 rounded-md overflow-hidden shadow-md flex justify-center items-center">
+                  <div class="bg-gray-500 aspect-auto rounded-md overflow-hidden shadow-md flex justify-center items-center">
                     <img src={image} className="flex-1"/>
                   </div>
                 ))
